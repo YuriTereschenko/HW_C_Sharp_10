@@ -12,16 +12,32 @@ info = {2, 3, 3, 1 }
 int[] data = { 0, 1, 1, 1, 1, 0, 0, 0, 1 };
 int[] info = { 2, 3, 3, 1 };
 
-int result = 0;
-int count = 0;
+int[] result = ConvertToDecimal(data, info);
+PrintArray(result);
 
-for (int i = 0; i < info.Length; i++)
+
+int[] ConvertToDecimal(int[] data, int[] info)
 {
-    for (int j = count; j < (info[i] + count); j++)
+    int[] arrayRes = new int[info.Length];
+    int result = 0;
+    int count = 0;
+    for (int i = 0; i < info.Length; i++)
     {
-        result = result * 2 + data[j];
+        for (int j = count; j < (info[i] + count); j++)
+        {
+            result = result * 2 + data[j];
+        }
+        arrayRes[i] = result;
+        result = 0;
+        count += info[i];
     }
-    System.Console.Write($"{result} ");
-    result = 0;
-    count += info[i];
+    return arrayRes;
+}
+
+void PrintArray(int[] array)
+{
+    for (int i = 0; i < array.Length; i++)
+    {
+        System.Console.Write($"{array[i]} ");
+    }
 }
